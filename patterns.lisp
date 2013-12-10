@@ -48,3 +48,14 @@ values. "
                               (find-pattern* pattern node))
      append match
      append other-matches))
+
+(defun node-by-name (name)
+  (lambda (node)
+    (string-equal name (node-name node))))
+
+(defun node-text (node)
+  (with-output-to-string (out)
+    (loop for child in (node-children node)
+       do (format out (etypecase child
+                        (string child)
+                        (cons (toxml child)))))))

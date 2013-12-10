@@ -7,14 +7,17 @@
            :make-feed-item))
 
 (defpackage trivial-feed.patterns
-  (:use :cl)
+  (:use :cl :xmls)
   (:export :compile-pattern
            :find-pattern
-           :find-pattern*))
+           :find-pattern*
+           :node-by-name
+           :node-text))
 
 (defpackage trivial-feed.rss
   (:use :cl
         :xmls
+        :trivial-feed.struct
         :trivial-feed.patterns)
   (:export :rss-feed-p
            :parse-rss))
