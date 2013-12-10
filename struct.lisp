@@ -2,18 +2,25 @@
 
 (in-package :trivial-feed.struct)
 
-;;; TODO: Default dates to *date*.
-
 (defvar *date* nil
   "Fallback date for feed.")
 
-(defun make-feed (items &rest args
-                  &key link date title description)
-  (declare (ignore link date title description))
-  (list* :items items
-         args))
+(defun fallback-date ()
+  (or *date* (get-universal-time)))
 
-(defun make-feed-item (&rest args
-                       &key link date author title description language)
-  (declare (ignore link date author title description language))
-  args)
+(defun make-feed
+    (items &key link (date (fallback-date)) title description)
+  `(:items ,items
+    :date ,date
+    ,@(and link `(:link ,link))
+    ,@(and title `(:title ,title))
+    ,@(and description `(:description ,description))))
+
+(defun make-feed-item
+    (&key link (date (fallback-date)) author title description language)
+  `(:date ,date
+    ,@(and link `(:link ,link))
+    ,@(and author `(:author ,author))
+    ,@(and title `(:title ,title))
+    ,@(and description `(:description ,description))
+    ,@(and language `(:language ,language))))
