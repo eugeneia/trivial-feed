@@ -56,6 +56,7 @@ values. "
 (defun node-text (node)
   (with-output-to-string (out)
     (loop for child in (node-children node)
-       do (format out (etypecase child
-                        (string child)
-                        (cons (toxml child)))))))
+       do (write-string (etypecase child
+                          (string child)
+                          (cons (toxml child)))
+                        out))))
