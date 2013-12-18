@@ -17,6 +17,7 @@
 (defpackage trivial-feed.rss
   (:use :cl
         :xmls
+        :net.telent.date
         :trivial-feed.struct
         :trivial-feed.patterns)
   (:export :rss-feed-p

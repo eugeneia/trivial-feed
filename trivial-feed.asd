@@ -18,4 +18,4 @@ provide a hashing method for feed items."
                (:file "trivial-feed"
                       :depends-on ("packages"
                                    "rss")))
-  :depends-on ("xmls" "ironclad" "trivial-utf-8"))
+  :depends-on ("xmls" "net-telent-date" "ironclad" "trivial-utf-8"))
