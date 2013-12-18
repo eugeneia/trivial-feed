@@ -9,16 +9,16 @@
   (or *date* (get-universal-time)))
 
 (defun make-feed
-    (items &key link (date (fallback-date)) title description)
+    (items &key link date title description)
   `(:items ,items
-    :date ,date
+    :date ,(or date (fallback-date))
     ,@(and link `(:link ,link))
     ,@(and title `(:title ,title))
     ,@(and description `(:description ,description))))
 
 (defun make-feed-item
-    (&key link (date (fallback-date)) author title description language)
-  `(:date ,date
+    (&key link date author title description language)
+  `(:date ,(or date (fallback-date))
     ,@(and link `(:link ,link))
     ,@(and author `(:author ,author))
     ,@(and title `(:title ,title))
