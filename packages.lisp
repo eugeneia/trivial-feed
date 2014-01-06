@@ -20,6 +20,15 @@
   (:export :rss-feed-p
            :parse-rss))
 
+(defpackage trivial-feed.atom
+  (:use :cl
+        :xmls
+        :net.telent.date
+        :trivial-feed.struct
+        :trivial-feed.xml)
+  (:export :atom-feed-p
+           :parse-atom))
+
 (defpackage trivial-feed
   (:use :ironclad
         :cl
