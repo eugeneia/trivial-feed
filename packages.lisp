@@ -6,12 +6,9 @@
            :make-feed
            :make-feed-item))
 
-(defpackage trivial-feed.patterns
+(defpackage trivial-feed.xml
   (:use :cl :xmls)
-  (:export :compile-pattern
-           :find-pattern
-           :find-pattern*
-           :node-by-name
+  (:export :node-by-name
            :node-text))
 
 (defpackage trivial-feed.rss
@@ -19,7 +16,7 @@
         :xmls
         :net.telent.date
         :trivial-feed.struct
-        :trivial-feed.patterns)
+        :trivial-feed.xml)
   (:export :rss-feed-p
            :parse-rss))
 

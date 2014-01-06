@@ -2,16 +2,16 @@
 
 (in-package :trivial-feed.rss)
 
-(defun keyword (string)
+(defun string-keyword (string)
   (intern (string-upcase string) :keyword))
 
 (defun rss-version (feed-tree)
-  (case (keyword (node-name feed-tree))
+  (case (string-keyword (node-name feed-tree))
     ;; RSS.
     (:rss (let ((version (assoc "version" (node-attrs feed-tree)
                                 :test #'string-equal)))
             (when version
-              (case (keyword (second version))
+              (case (string-keyword (second version))
                 (:2.0 :2.0)
                 (:0.91 :0.91)
                 (:0.92 :0.92)))))
@@ -70,12 +70,13 @@
          (find-if (node-by-name "description") channel-nodes))
         (language-node
          (find-if (node-by-name "language") channel-nodes)))
-    (values (and link-node (node-text link-node))
-            (and date-node (parse-time (node-text date-node)))
-            (and author-node (node-text author-node))
-            (and title-node (node-text title-node))
-            (and description-node (node-text description-node))
-            (and language-node (keyword (node-text language-node))))))
+    (values
+     (and link-node (node-text link-node))
+     (and date-node (parse-time (node-text date-node)))
+     (and author-node (node-text author-node))
+     (and title-node (node-text title-node))
+     (and description-node (node-text description-node))
+     (and language-node (string-keyword (node-text language-node))))))
 
 (defun parse-rss-item (item-nodes)
   (let ((link-node

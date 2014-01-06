@@ -7,14 +7,14 @@ provide a hashing method for feed items."
   :author "Max Rottenkolber <max@mr.gy>"
   :license "GNU AGPL"
   :components ((:file "packages")
-               (:file "patterns"
+               (:file "xml"
                       :depends-on ("packages"))
                (:file "struct"
                       :depends-on ("packages"))
                (:file "rss"
                       :depends-on ("packages"
                                    "struct"
-                                   "patterns"))
+                                   "xml"))
                (:file "trivial-feed"
                       :depends-on ("packages"
                                    "rss")))
