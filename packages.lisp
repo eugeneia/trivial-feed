@@ -7,9 +7,11 @@
            :make-feed-item))
 
 (defpackage trivial-feed.xml
-  (:use :cl :xmls)
+  (:use :cl :xmls :net.telent.date)
   (:export :node-by-name
-           :node-text))
+           :node-text
+           :parse-xsd-time
+           :string-keyword))
 
 (defpackage trivial-feed.rss
   (:use :cl
@@ -35,7 +37,8 @@
         :xmls
         :trivial-utf-8
         :trivial-feed.struct
-        :trivial-feed.rss)
+        :trivial-feed.rss
+        :trivial-feed.atom)
   (:shadow :null) ; Shadow IRONCLAD's NULL with CL's.
   (:export :parse-feed
            :feed-item-hash))
