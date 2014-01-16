@@ -32,13 +32,9 @@
            :parse-atom))
 
 (defpackage trivial-feed
-  (:use :ironclad
-        :cl
+  (:use :cl
         :xmls
-        :trivial-utf-8
         :trivial-feed.struct
         :trivial-feed.rss
         :trivial-feed.atom)
-  (:shadow :null) ; Shadow IRONCLAD's NULL with CL's.
-  (:export :parse-feed
-           :feed-item-hash))
+  (:export :parse-feed))

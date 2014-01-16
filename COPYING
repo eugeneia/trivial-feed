@@ -1,5 +1,5 @@
-trivial-feed: Parses syndication feeds such as RSS and ATOM to a canoical form and
-provides a hashing method for feed items.
+trivial-feed: Parses syndication feeds such as RSS and ATOM to a canoical
+form.
 Copyright © 2013 Max Rottenkolber <max@mr.gy>
 
 This program is free software: you can redistribute it and/or modify

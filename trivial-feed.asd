@@ -2,8 +2,7 @@
 
 (defsystem trivial-feed
   :description
-"Parse syndication feeds such as RSS and ATOM to a canoical form and
-provide a hashing method for feed items."
+"Parse syndication feeds such as RSS and ATOM to a canoical form."
   :author "Max Rottenkolber <max@mr.gy>"
   :license "GNU AGPL"
   :components ((:file "packages")
@@ -23,4 +22,4 @@ provide a hashing method for feed items."
                       :depends-on ("packages"
                                    "rss"
                                    "atom")))
-  :depends-on ("xmls" "net-telent-date" "ironclad" "trivial-utf-8"))
+  :depends-on ("xmls" "net-telent-date"))
