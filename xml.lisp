@@ -29,3 +29,5 @@
                                  (subseq zone 4 6))))))))
     (error () nil))) ; Return NIL on failure.
 
+(defun string-keyword (string)
+  (intern (string-upcase string) :keyword))

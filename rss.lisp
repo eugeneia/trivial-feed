@@ -2,9 +2,6 @@
 
 (in-package :trivial-feed.rss)
 
-(defun string-keyword (string)
-  (intern (string-upcase string) :keyword))
-
 (defun rss-version (feed-tree)
   (case (string-keyword (node-name feed-tree))
     ;; RSS.
