@@ -15,7 +15,12 @@ provide a hashing method for feed items."
                       :depends-on ("packages"
                                    "struct"
                                    "xml"))
+               (:file "atom"
+                      :depends-on ("packages"
+                                   "struct"
+                                   "xml"))
                (:file "trivial-feed"
                       :depends-on ("packages"
-                                   "rss")))
+                                   "rss"
+                                   "atom")))
   :depends-on ("xmls" "net-telent-date" "ironclad" "trivial-utf-8"))
