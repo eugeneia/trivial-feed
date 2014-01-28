@@ -3,9 +3,9 @@
 
 (in-package :trivial-feed)
 
-(defun parse-feed (stream &optional (fallback-date (get-universal-time)))
+(defun parse-feed (s &optional (fallback-date (get-universal-time)))
   (let ((*date* fallback-date)
-        (feed-tree (parse stream :compress-whitespace t)))
+        (feed-tree (parse s :compress-whitespace t)))
     (cond ((rss-feed-p feed-tree) (parse-rss feed-tree))
           ((atom-feed-p feed-tree) (parse-atom feed-tree))
           ;; Unsupported format, fail.
