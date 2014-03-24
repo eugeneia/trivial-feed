@@ -4,7 +4,8 @@
 
 (defun node-by-name (name)
   (lambda (node)
-    (string-equal name (node-name node))))
+    (when (stringp #1=(node-name node))
+      (string-equal name #1#))))
 
 (defun node-text (node)
   (with-output-to-string (out)
