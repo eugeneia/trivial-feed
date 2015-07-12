@@ -22,4 +22,4 @@
                       :depends-on ("packages"
                                    "rss"
                                    "atom")))
-  :depends-on ("xmls" "net-telent-date"))
+  :depends-on ("xmls" "cl-date-time-parser"))

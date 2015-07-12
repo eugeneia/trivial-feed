@@ -7,16 +7,15 @@
            :make-feed-item))
 
 (defpackage trivial-feed.xml
-  (:use :cl :xmls :net.telent.date)
+  (:use :cl :xmls)
   (:export :node-by-name
            :node-text
-           :parse-xsd-time
            :attribute))
 
 (defpackage trivial-feed.rss
   (:use :cl
         :xmls
-        :net.telent.date
+        :cl-date-time-parser
         :trivial-feed.struct
         :trivial-feed.xml)
   (:export :rss-feed-p
@@ -25,7 +24,7 @@
 (defpackage trivial-feed.atom
   (:use :cl
         :xmls
-        :net.telent.date
+        :cl-date-time-parser
         :trivial-feed.struct
         :trivial-feed.xml)
   (:export :atom-feed-p

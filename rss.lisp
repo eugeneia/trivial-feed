@@ -56,7 +56,7 @@
          (find-if (node-by-name "language") channel-nodes)))
     (values
      (and link-node (node-text link-node))
-     (and date-node (parse-time (node-text date-node)))
+     (and date-node (parse-date-time (node-text date-node)))
      (and author-node (node-text author-node))
      (and title-node (node-text title-node))
      (and description-node (node-text description-node))
@@ -74,7 +74,7 @@
         (description-node
          (find-if (node-by-name "description") item-nodes)))
     (values (and link-node (node-text link-node))
-            (and date-node (parse-time (node-text date-node)))
+            (and date-node (parse-date-time (node-text date-node)))
             (and author-node (node-text author-node))
             (and title-node (node-text title-node))
             (and description-node (node-text description-node)))))
