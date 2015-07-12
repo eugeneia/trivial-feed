@@ -3,19 +3,14 @@
 (in-package :trivial-feed.atom)
 
 (defun atom-version (feed-tree)
-  (and (string= "feed" (node-name feed-tree))
-       (cond ((string= "http://purl.org/atom/ns#"
-                       (node-ns feed-tree))
-              :0.3)
-             ((string= "http://www.w3.org/2005/Atom"
-                       (node-ns feed-tree))
-              :1.0))))
+  (string-equal "feed" (node-name feed-tree)))
+;;  (and (string-equal "feed" (node-name feed-tree))
+;;       (attribute (node-ns feed-tree)
+;;                  '(("http://purl.org/atom/ns#" :0.3)
+;;                    ("http://www.w3.org/2005/Atom" :1.0)))))
 
 (defun atom-feed-p (feed-tree)
   (not (null (atom-version feed-tree))))
-
-(defvar *version* nil
-  "Dynamically bound to Atom version during parsing.")
 
 (defun feed-link (link-nodes)
   (or (find-if (lambda (node) (xmlrep-attrib-value "self" node nil))
@@ -91,9 +86,7 @@
        (and author-nodes (format-authors author-nodes))
        (and title-node (node-text title-node))
        (and description-node (node-text description-node))
-       (let ((language-string
-              (xmlrep-attrib-value "lang" entry-node nil)))
-         (and language-string (string-keyword language-string)))))))
+       (xmlrep-attrib-value "lang" entry-node nil)))))
 
 (defun parse-atom-feed (feed-tree)
   (multiple-value-bind (link date author title description)
@@ -117,5 +110,4 @@
      :description description)))
 
 (defun parse-atom (feed-tree)
-  (let ((*version* (atom-version feed-tree)))
-    (parse-atom-feed feed-tree)))
+  (parse-atom-feed feed-tree))

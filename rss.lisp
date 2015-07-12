@@ -3,23 +3,10 @@
 (in-package :trivial-feed.rss)
 
 (defun rss-version (feed-tree)
-  (case (string-keyword (node-name feed-tree))
-    ;; RSS.
-    (:rss (let ((version (assoc "version" (node-attrs feed-tree)
-                                :test #'string-equal)))
-            (when version
-              (case (string-keyword (second version))
-                (:2.0 :2.0)
-                (:0.91 :0.91)
-                (:0.92 :0.92)))))
-    ;; RDF.
-    (:rdf :1.0)))
+  (attribute (node-name feed-tree) '(("rss" :rss) ("rdf" :rdf))))
 
 (defun rss-feed-p (feed-tree)
   (not (null (rss-version feed-tree))))
-
-(defvar *version* nil
-  "Dynamically bound to RSS version during parsing.")
 
 
 ;;; RDF parser.
@@ -73,7 +60,7 @@
      (and author-node (node-text author-node))
      (and title-node (node-text title-node))
      (and description-node (node-text description-node))
-     (and language-node (string-keyword (node-text language-node))))))
+     (and language-node (node-text language-node)))))
 
 (defun parse-rss-item (item-nodes)
   (let ((link-node
@@ -117,9 +104,6 @@
        :description description))))
 
 (defun parse-rss (feed-tree)
-  (let ((*version* (rss-version feed-tree)))
-    (case *version*
-      (:1.0
-       (parse-rdf-feed (node-children feed-tree)))
-      ((:2.0 :0.91 :0.92)
-       (parse-rss-feed (node-children feed-tree))))))
+  (case (rss-version feed-tree)
+    (:rdf (parse-rdf-feed (node-children feed-tree)))
+    (:rss (parse-rss-feed (node-children feed-tree)))))

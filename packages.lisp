@@ -11,7 +11,7 @@
   (:export :node-by-name
            :node-text
            :parse-xsd-time
-           :string-keyword))
+           :attribute))
 
 (defpackage trivial-feed.rss
   (:use :cl
