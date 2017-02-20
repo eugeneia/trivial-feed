@@ -20,6 +20,7 @@
                                    "xml"))
                (:file "trivial-feed"
                       :depends-on ("packages"
+                                   "xml"
                                    "rss"
                                    "atom")))
-  :depends-on ("xmls" "cl-date-time-parser"))
+  :depends-on ("xmls" "cl-date-time-parser" "flexi-streams" "cl-ppcre"))
