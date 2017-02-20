@@ -5,20 +5,17 @@
 (defvar *date* nil
   "Fallback date for feed.")
 
-(defun fallback-date ()
-  (or *date* (get-universal-time)))
-
 (defun make-feed
     (items &key link date title description)
   `(:items ,items
-    :date ,(or date (fallback-date))
+    :date ,(or date *date*)
     ,@(and link `(:link ,link))
     ,@(and title `(:title ,title))
     ,@(and description `(:description ,description))))
 
 (defun make-feed-item
     (&key link date author title description language)
-  `(:date ,(or date (fallback-date))
+  `(:date ,(or date *date*)
     ,@(and link `(:link ,link))
     ,@(and author `(:author ,author))
     ,@(and title `(:title ,title))
