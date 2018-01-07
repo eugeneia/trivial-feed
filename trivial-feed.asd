@@ -23,4 +23,4 @@
                                    "xml"
                                    "rss"
                                    "atom")))
-  :depends-on ("xmls" "cl-date-time-parser" "flexi-streams" "cl-ppcre"))
+  :depends-on ("xmls" "xmls/octets" "flexi-streams" "cl-date-time-parser"))

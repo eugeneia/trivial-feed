@@ -1,10 +1,11 @@
 ;;;; TRIVIAL-FEED: Parse syndication feeds such as RSS and ATOM to a
-;;;; canoical form and provide a hashing method for feed items.
+;;;; canoical form.
 
 (in-package :trivial-feed)
 
 (defun decoded-input (s)
-  (cond ((typep s '(array (unsigned-byte 8)))
+  (cond ((and (arrayp s)
+              (subtypep (array-element-type s) '(unsigned-byte 8)))
          (with-input-from-sequence (in s)
            (decoded-input in)))
         ((and (streamp s)

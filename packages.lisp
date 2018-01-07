@@ -8,11 +8,8 @@
 
 (defpackage trivial-feed.xml
   (:use :cl
-        :xmls
-        :flexi-streams
-        :cl-ppcre)
-  (:export :make-xml-stream
-           :node-by-name
+        :xmls)
+  (:export :node-by-name
            :node-text
            :attribute))
 
@@ -37,6 +34,7 @@
 (defpackage trivial-feed
   (:use :cl
         :xmls
+        :xmls/octets
         :flexi-streams
         :trivial-feed.struct
         :trivial-feed.xml
