@@ -13,8 +13,12 @@
   (not (null (atom-version feed-tree))))
 
 (defun feed-link (link-nodes)
-  (or (find-if (lambda (node) (xmlrep-attrib-value "self" node nil))
-               link-nodes)
+  ;; pick first link node with rel='alternate', otherwise fallback to first
+  ;; link node (undefined rel attribute implies 'alternate')
+  (or (find "alternate" link-nodes
+            :test 'string-equal
+            :key (lambda (node)
+                   (xmlrep-attrib-value "rel" node "alternate")))
       (first link-nodes)))
 
 (defun date-node-p (node)
