@@ -33,7 +33,7 @@
          (find-if (node-by-name "language") rdf-nodes)))
     (values
      (and link-node (node-text link-node))
-     (and date-node (parse-date-time (node-text date-node)))
+     (and date-node (ignore-errors (parse-date-time (node-text date-node))))
      (and title-node (node-text title-node))
      (and author-nodes (format-rdf-authors author-nodes))
      (and description-node (node-text description-node))
@@ -78,7 +78,7 @@
          (find-if (node-by-name "language") channel-nodes)))
     (values
      (and link-node (node-text link-node))
-     (and date-node (parse-date-time (node-text date-node)))
+     (and date-node (ignore-errors (parse-date-time (node-text date-node))))
      (and author-node (node-text author-node))
      (and title-node (node-text title-node))
      (and description-node (node-text description-node))
@@ -95,11 +95,12 @@
          (find-if (node-by-name "title") item-nodes))
         (description-node
          (find-if (node-by-name "description") item-nodes)))
-    (values (and link-node (node-text link-node))
-            (and date-node (parse-date-time (node-text date-node)))
-            (and author-node (node-text author-node))
-            (and title-node (node-text title-node))
-            (and description-node (node-text description-node)))))
+    (values
+     (and link-node (node-text link-node))
+     (and date-node (ignore-errors (parse-date-time (node-text date-node))))
+     (and author-node (node-text author-node))
+     (and title-node (node-text title-node))
+     (and description-node (node-text description-node)))))
 
 (defun parse-rss-feed (nodes)
   (let* ((channel-node (find-if (node-by-name "channel") nodes))

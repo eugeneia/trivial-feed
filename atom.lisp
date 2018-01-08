@@ -66,7 +66,7 @@
          (find-if #'description-node-p feed-tree)))
     (values
      (and link-node (xmlrep-attrib-value "href" link-node nil))
-      (and date-node (parse-date-time (node-text date-node)))
+     (and date-node (ignore-errors (parse-date-time (node-text date-node))))
      (and author-nodes (format-authors author-nodes))
      (and title-node (node-text title-node))
      (and description-node (node-text description-node)))))
@@ -86,7 +86,7 @@
            (find-if #'description-node-p nodes)))
       (values
        (and link-node (xmlrep-attrib-value "href" link-node nil))
-       (and date-node (parse-date-time (node-text date-node)))
+       (and date-node (ignore-errors (parse-date-time (node-text date-node))))
        (and author-nodes (format-authors author-nodes))
        (and title-node (node-text title-node))
        (and description-node (node-text description-node))
